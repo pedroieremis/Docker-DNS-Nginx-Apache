@@ -5,6 +5,7 @@ while test $op != 0; do
 	echo "0 - Encerrar Script"
 	echo "1 - Subir Serviços"
 	echo "2 - Parar Serviços"
+	echo "3 - Apagar imagens usadas"
 	read op
 	case $op in
 	0)
@@ -41,6 +42,10 @@ while test $op != 0; do
 		docker rm -f s1
 		docker rm -f web1
 		docker rm -f web2;;
+	3)
+		docker rmi -f ubuntu
+		docker rmi -f nx
+		docker rmi -f apache;;
 	*)
 		echo "Numero Invalido!!"
 	esac
