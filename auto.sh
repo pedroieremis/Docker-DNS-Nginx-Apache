@@ -20,7 +20,7 @@ while test $op != 0; do
 		docker run -d -p $IP:53:53/udp -p $IP:53:53/tcp --name s1 --hostname dns-s1 -v "$dir"/:/etc/bind --dns $IP ubuntu
 		echo
 		echo "------------------------------------------------------"
-		echo "--------------- DNS EXECUTANDO. IP: $IP --------------"
+		echo "------------ DNS EXECUTANDO com IP: $IP -----"
 		echo "------------------------------------------------------"
 		echo
 		cd ..
@@ -28,16 +28,20 @@ while test $op != 0; do
 		cd web1
 		docker build -t nx .
 		docker run -d --name web1 -p 9090:80 nx
+		echo
 		echo "------------------------------------------------------"
 		echo "---- HTML USANDO NGINX EXECUTANDO NA PORTA 9090! -----"
 		echo "------------------------------------------------------"
+		echo
 		cd ..
 		cd web2
 		docker build -t apache .
 		docker run -d --name web2 -p 7070:80 apache
+		echo
 		echo "------------------------------------------------------"
 		echo "---- HTML USANDO APACHE EXECUTANDO NA PORTA 7070! ----"
-		echo "------------------------------------------------------";;
+		echo "------------------------------------------------------"
+		echo ;;	
 	2)
 		docker rm -f s1
 		docker rm -f web1
